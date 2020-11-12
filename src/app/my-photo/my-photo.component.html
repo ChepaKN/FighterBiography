@@ -1,0 +1,30 @@
+<p>
+  Имя: {{name}}
+</p>
+<p>
+  Дата рождения: {{birthDate|date: 'dd.MM.yyyy'}}
+</p>
+<img src={{this.photoSrc}} alt={{this.name}}>
+<p>
+  Следующий бой состоится через {{timeBeforeFight}}
+</p>
+<div>
+  <label> Дата
+    <input [(ngModel)]="this.fightDate" >
+  </label>
+  <label> Соперник
+    <input [(ngModel)]="this.opponent" >
+  </label>
+  <button (click)="addFightEvent()">Сохранить</button>
+</div>
+
+<p>Предстоящие бои:</p>
+
+<div *ngFor="let record of this.fightEventsList">
+  {{record.fightDate}} -  {{this.name}} vs {{record.opponentName}}
+</div>
+<div>
+  <button *ngIf="fightEventsList.length != 0" (click)="clearEvents()">Очистить</button>
+</div>
+
+
