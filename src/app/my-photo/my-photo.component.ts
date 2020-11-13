@@ -40,11 +40,16 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
   // getTimeBeforeFight = () => this.timeBeforeFight = this.fightEvent.fightDate.getTime() - new Date().getTime();
 
+  saveLocalStorage(event : FightEvent): void{
+    localStorage.setItem(event.fightDate, JSON.stringify(event))
+  }
+
   addFightEvent(): void{
     this.fightEvent = new FightEvent(this.fightDate, this.opponent);
     this.fightEventsList.push(this.fightEvent);
     this.fightDate = '';
     this.opponent = '';
+    this.saveLocalStorage(this.fightEvent);
   }
 
   clearEvents(): void{
