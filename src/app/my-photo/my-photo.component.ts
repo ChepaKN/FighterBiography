@@ -23,13 +23,13 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
 
   constructor() {
-    this.name = 'Алистар Оверим';
+    this.name = 'Алистар "The Demolition Man" Оверим';
     this.birthDate = new Date(1992, 1, 3);
     this.photoSrc = 'assets/img/overeem.jpg';
   }
 
   ngOnInit(): void {
-    this.timerId = setInterval(() => this.secondsSinceOpen++, 1000);
+    // this.timerId = setInterval(() => this.secondsSinceOpen++, 1000);
     // this.fightTimerId = setInterval(this.getTimeBeforeFight, 1000);
   }
 

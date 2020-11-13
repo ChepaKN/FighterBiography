@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+  fighterPageName = 'fighter';
+  calculatorPageName = 'calculator';
+  selectedPage: string;
+  pages: string[] = [this.fighterPageName, this.calculatorPageName];
 }

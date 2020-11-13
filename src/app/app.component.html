@@ -1,8 +1,16 @@
 <p>
-  Alistair "The Demolition Man" Overeem
+  My first experience in Angular
 </p>
 
-<app-my-photo></app-my-photo>
-<app-calculator></app-calculator>
+<label> Выберите страницу:
+  <select [(ngModel)]="selectedPage">
+    <option *ngFor="let record of pages">{{record}}</option>
+  </select>
+</label>
 
+<div [ngSwitch]="selectedPage">
+  <app-my-photo *ngSwitchCase="fighterPageName"></app-my-photo>
+  <app-calculator *ngSwitchCase="calculatorPageName"></app-calculator>
+  <app-my-photo *ngSwitchDefault="fighterPageName"></app-my-photo>
+</div>
 
