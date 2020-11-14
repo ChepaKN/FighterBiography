@@ -9,6 +9,7 @@ import {FightEvent} from './fight-event';
 export class MyPhotoComponent implements OnInit, OnDestroy {
 
   name: string;
+  nickname: string;
   birthDate: Date;
   photoSrc: string;
   secondsSinceOpen = 0;
@@ -21,11 +22,15 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   fightEvent: FightEvent;
   fightEventsList: FightEvent[] = [];
 
+  savedRecordsCounter = 0;
 
   constructor() {
-    this.name = 'Алистар "The Demolition Man" Оверим';
+    this.name = 'Алистар Оверим';
+    this.nickname = "The Demolition Man";
     this.birthDate = new Date(1992, 1, 3);
     this.photoSrc = 'assets/img/overeem.jpg';
+    this.savedRecordsCounter = localStorage.length;
+    this.loadFromLocalStorage();
   }
 
   ngOnInit(): void {
@@ -41,7 +46,15 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   // getTimeBeforeFight = () => this.timeBeforeFight = this.fightEvent.fightDate.getTime() - new Date().getTime();
 
   saveLocalStorage(event : FightEvent): void{
-    localStorage.setItem(event.fightDate, JSON.stringify(event))
+    localStorage.setItem(this.savedRecordsCounter.toString(), JSON.stringify(event));
+    this.savedRecordsCounter++;
+  }
+
+  loadFromLocalStorage(): void{
+    for(let i = 0; i < localStorage.length; i++){
+      this.fightEvent = JSON.parse(localStorage.getItem(i.toString()));
+      this.fightEventsList.push(this.fightEvent);
+    }
   }
 
   addFightEvent(): void{
