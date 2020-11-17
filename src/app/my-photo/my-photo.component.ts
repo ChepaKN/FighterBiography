@@ -30,10 +30,10 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
     this.birthDate = new Date(1992, 1, 3);
     this.photoSrc = 'assets/img/overeem.jpg';
     this.savedRecordsCounter = localStorage.length;
-    this.loadFromLocalStorage();
   }
 
   ngOnInit(): void {
+    this.loadFromLocalStorage();
     // this.timerId = setInterval(() => this.secondsSinceOpen++, 1000);
     // this.fightTimerId = setInterval(this.getTimeBeforeFight, 1000);
   }
@@ -67,5 +67,6 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
   clearEvents(): void{
     this.fightEventsList = [];
+    localStorage.clear();
   }
 }
