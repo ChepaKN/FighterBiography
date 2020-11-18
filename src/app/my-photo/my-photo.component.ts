@@ -17,8 +17,8 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   timerId: number;
   fightTimerId: number;
 
-  opponent: string;
-  fightDate: string;
+  opponent = '';
+  fightDate = '';
   fightEvent: FightEvent;
   fightEventsList: FightEvent[] = [];
 
@@ -58,6 +58,9 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   }
 
   addFightEvent(): void{
+
+    if(this.fightDate == '' || this.opponent == '') return;
+
     this.fightEvent = new FightEvent(this.fightDate, this.opponent);
     this.fightEventsList.push(this.fightEvent);
     this.fightDate = '';
