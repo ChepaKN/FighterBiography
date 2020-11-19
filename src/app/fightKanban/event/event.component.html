@@ -1,5 +1,8 @@
 <div>
   Дата: {{event.date|date: 'dd.MM.yyyy'}} <br>
   Название: {{event.title }} <br>
-  Место: {{event.location}} <br>
+  Место: {{event.location}}<br>
+  <button (click)="moveAhead()">Вперед</button>
+  <button (click)="deleteEvent()">Удалить</button>
 </div>
+<br>

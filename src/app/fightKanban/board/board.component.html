@@ -1,4 +1,4 @@
 <p> Запланированные турниры</p>
-<div *ngFor="let stage of stages">
-  <app-stage [stage]="stage"></app-stage>
+<div *ngFor="let stage of stages; let i = index">
+  <app-stage (moveEvent)="onEventMoved($event, i)" [stage]="stage"></app-stage>
 </div>

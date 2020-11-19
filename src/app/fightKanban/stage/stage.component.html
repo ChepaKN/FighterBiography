@@ -10,6 +10,6 @@
 {{stage.name}}
 </p>
 
-<div *ngFor="let event of events">
-  <app-event [event]="event"></app-event> <br>
+<div *ngFor="let event of stage.events">
+  <app-event (deleteEventBoard)="onEventDeleted($event)" (moveEvent)="onEventMoved($event)"  [event]="event"></app-event> <br>
 </div>
