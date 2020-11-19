@@ -12,10 +12,10 @@
 </p>
 <div>
   <label> Дата
-    <input [(ngModel)]="this.fightDate" >
+    <input [(ngModel)]="this.fightDate" placeholder="YYYY.MM.DD" value="" >
   </label>
   <label> Соперник
-    <input [(ngModel)]="this.opponent" >
+    <input [(ngModel)]="this.opponent"  placeholder="Имя" value="">
   </label>
   <button (click)="addFightEvent()">Сохранить</button>
 </div>
@@ -23,7 +23,7 @@
 <p>Предстоящие бои:</p>
 
 <div *ngFor="let record of this.fightEventsList">
-  {{record.fightDate}} -  {{this.name}} vs {{record.opponentName}}
+  {{record.fightDate|date: 'dd.MM.yyyy'}} -  {{this.name}} vs {{record.opponentName}}
 </div>
 <div>
   <button *ngIf="fightEventsList.length != 0" (click)="clearEvents()">Очистить</button>

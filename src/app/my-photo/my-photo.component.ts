@@ -59,9 +59,18 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
   addFightEvent(): void{
 
-    if(this.fightDate == '' || this.opponent == '') return;
+    if(this.fightDate == '' || this.opponent == '') {
+      alert('Заполните поля')
+      return;
+    }
 
-    this.fightEvent = new FightEvent(this.fightDate, this.opponent);
+    let date = new Date(this.fightDate);
+    if(isNaN(date.valueOf())){
+      alert('Некорректно введена дата');
+      return;
+    }
+
+    this.fightEvent = new FightEvent(date, this.opponent);
     this.fightEventsList.push(this.fightEvent);
     this.fightDate = '';
     this.opponent = '';
