@@ -1,0 +1,15 @@
+
+<div *ngIf="stage.name == 'В разработке'">
+  <input [(ngModel)] = "this.eventDate" placeholder="YYYY.MM.DD" value=""><br>
+  <input [(ngModel)] = "this.eventTitle" placeholder="Название турнира" value=""><br>
+  <input [(ngModel)] = "this.eventLocation" placeholder="Место проведения" value=""><br>
+  <button   (click)="createEvent()">Добавить</button>
+</div><br>
+
+<p>
+{{stage.name}}
+</p>
+
+<div *ngFor="let event of events">
+  <app-event [event]="event"></app-event> <br>
+</div>
