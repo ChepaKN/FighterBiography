@@ -12,10 +12,8 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   nickname: string;
   birthDate: Date;
   photoSrc: string;
-  secondsSinceOpen = 0;
   timeBeforeFight = 0;
-  timerId: number;
-  fightTimerId: number;
+  nextFightTimerId: number;
 
   opponent = '';
   fightDate = '';
@@ -29,32 +27,46 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
     this.nickname = "The Demolition Man";
     this.birthDate = new Date(1992, 1, 3);
     this.photoSrc = 'assets/img/overeem.jpg';
-    this.savedRecordsCounter = localStorage.length;
   }
 
   ngOnInit(): void {
+    this.savedRecordsCounter = localStorage.length;
     this.loadFromLocalStorage();
-    // this.timerId = setInterval(() => this.secondsSinceOpen++, 1000);
-    // this.fightTimerId = setInterval(this.getTimeBeforeFight, 1000);
+    this.nextFightTimerId = setInterval(this.nextFightCountdown, 1000);
+  }
+
+  nextFightCountdown = () => {
+    if(this.fightEventsList.length){
+      this.timeBeforeFight = this.fightEventsList[0].fightDate.valueOf() - new Date().valueOf();
+    }else{
+      this.timeBeforeFight = 0;
+    }
   }
 
   ngOnDestroy(): void {
-    clearInterval(this.timerId);
-    clearInterval(this.fightTimerId);
+    clearInterval(this.nextFightTimerId);
   }
 
-  // getTimeBeforeFight = () => this.timeBeforeFight = this.fightEvent.fightDate.getTime() - new Date().getTime();
+  sortEventList(): void{
+    this.fightEventsList = this.fightEventsList.filter(value => value.fightDate.valueOf() > new Date().valueOf());
+    this.fightEventsList.sort((a, b) => a.fightDate.valueOf() - b.fightDate.valueOf());
+  }
 
   saveLocalStorage(event : FightEvent): void{
     localStorage.setItem(this.savedRecordsCounter.toString(), JSON.stringify(event));
+    this.sortEventList();
     this.savedRecordsCounter++;
   }
 
   loadFromLocalStorage(): void{
+    let fromJson, opponentName, fightDate;
     for(let i = 0; i < localStorage.length; i++){
-      this.fightEvent = JSON.parse(localStorage.getItem(i.toString()));
-      this.fightEventsList.push(this.fightEvent);
+      fromJson = JSON.parse(localStorage.getItem(i.toString()));
+      opponentName = fromJson.opponentName;
+      fightDate = fromJson.fightDate;
+      this.fightEventsList.push(new FightEvent(new Date(fightDate), opponentName));
     }
+    this.sortEventList();
   }
 
   addFightEvent(): void{
@@ -65,7 +77,7 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
     }
 
     let date = new Date(this.fightDate);
-    if(isNaN(date.valueOf())){
+    if(isNaN(date.valueOf()) || (date.valueOf() < new Date().valueOf())){
       alert('Некорректно введена дата');
       return;
     }
