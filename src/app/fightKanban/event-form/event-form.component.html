@@ -1,0 +1,8 @@
+<form (submit)="createEvent()" [formGroup]="eventForm">
+<!--  <div *ngIf="stage.name == 'В разработке'">-->
+    <input formArrayName="eventDate" placeholder="YYYY.MM.DD" value=""><br>
+    <input formArrayName="eventTitle" placeholder="Название турнира" value=""><br>
+    <input formArrayName="eventLocation" placeholder="Место проведения" value=""><br>
+    <button type="submit">Добавить</button>
+<!--  </div><br>-->
+</form>

@@ -1,14 +1,16 @@
 
-<div *ngIf="stage.name == 'В разработке'">
-  <input [(ngModel)] = "this.eventDate" placeholder="YYYY.MM.DD" value=""><br>
-  <input [(ngModel)] = "this.eventTitle" placeholder="Название турнира" value=""><br>
-  <input [(ngModel)] = "this.eventLocation" placeholder="Место проведения" value=""><br>
-  <button   (click)="createEvent()">Добавить</button>
-</div><br>
+<!--<div *ngIf="stage.name == 'В разработке'">-->
+<!--  <input [(ngModel)] = "this.eventDate" placeholder="YYYY.MM.DD" value=""><br>-->
+<!--  <input [(ngModel)] = "this.eventTitle" placeholder="Название турнира" value=""><br>-->
+<!--  <input [(ngModel)] = "this.eventLocation" placeholder="Место проведения" value=""><br>-->
+<!--  <button   (click)="createEvent()">Добавить</button>-->
+<!--</div><br>-->
 
 <p>
 {{stage.name}}
 </p>
+
+<app-event-form (create)="addEvent($event)"></app-event-form>
 
 <div *ngFor="let event of stage.events">
   <app-event (deleteEventBoard)="onEventDeleted($event)" (moveEvent)="onEventMoved($event)"  [event]="event"></app-event> <br>

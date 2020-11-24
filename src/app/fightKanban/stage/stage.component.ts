@@ -11,35 +11,34 @@ export class StageComponent implements OnInit {
 
   @Input()
   stage: DomenStage;
-  // events: DomenEvent[] = [];
 
   @Output()
   moveEvent: EventEmitter<DomenEvent> = new EventEmitter<DomenEvent>();
 
-  eventDate: string = '';
-  eventTitle: string = '';
-  eventLocation: string = '';
+  // eventDate: string = '';
+  // eventTitle: string = '';
+  // eventLocation: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  createEvent() {
-    if(this.eventDate == '' || this.eventTitle == '' || this.eventLocation == ''){
-      alert('Пожалуйста, заполните форму')
-      return;
-    }
-
-    let date = new Date(this.eventDate);
-    if(isNaN(date.valueOf())){
-      alert('Пожалуйста, заполните дату корректно')
-      return;
-    }
-    this.stage.events.push(new DomenEvent(date, this.eventTitle, this.eventLocation));
-    this.eventTitle = '';
-    this.eventLocation = '';
-    this.eventDate = '';
+  addEvent(event:  DomenEvent) {
+    // if(this.eventDate == '' || this.eventTitle == '' || this.eventLocation == ''){
+    //   alert('Пожалуйста, заполните форму')
+    //   return;
+    // }
+    //
+    // let date = new Date(this.eventDate);
+    // if(isNaN(date.valueOf())){
+    //   alert('Пожалуйста, заполните дату корректно')
+    //   return;
+    // }
+    this.stage.events.push(event);
+    // this.eventTitle = '';
+    // this.eventLocation = '';
+    // this.eventDate = '';
   }
 
   onEventMoved($event: DomenEvent) {
