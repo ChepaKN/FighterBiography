@@ -1,8 +1,9 @@
 <form (submit)="createEvent()" [formGroup]="eventForm">
-<!--  <div *ngIf="stage.name == 'В разработке'">-->
-    <input formArrayName="eventDate" placeholder="YYYY.MM.DD" value=""><br>
-    <input formArrayName="eventTitle" placeholder="Название турнира" value=""><br>
-    <input formArrayName="eventLocation" placeholder="Место проведения" value=""><br>
-    <button type="submit">Добавить</button>
-<!--  </div><br>-->
+  <input formControlName="eventDate" placeholder="YYYY.MM.DD" value=""><br>
+  <app-form-error [control]="eventForm.controls.eventDate"></app-form-error>
+  <input formControlName="eventTitle" placeholder="Название турнира" value=""><br>
+  <app-form-error [control]="eventForm.controls.eventTitle"></app-form-error>
+  <input formControlName="eventLocation" placeholder="Место проведения" value=""><br>
+  <app-form-error [control]="eventForm.controls.eventLocation"></app-form-error>
+  <button type="submit">Добавить</button>
 </form>

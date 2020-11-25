@@ -9,6 +9,7 @@ import { BoardComponent } from './fightKanban/board/board.component';
 import { StageComponent } from './fightKanban/stage/stage.component';
 import { EventComponent } from './fightKanban/event/event.component';
 import { EventFormComponent } from './fightKanban/event-form/event-form.component';
+import { FormErrorComponent } from './form-error/form-error.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { EventFormComponent } from './fightKanban/event-form/event-form.componen
     StageComponent,
     EventComponent,
     EventFormComponent,
+    FormErrorComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {DomenEvent} from "../domenClasses/domen-event";
+import validate = WebAssembly.validate;
 
 @Component({
   selector: 'app-event-form',
@@ -16,31 +17,53 @@ export class EventFormComponent implements OnInit {
 
   constructor() {
     this.eventForm = new FormGroup({
-      eventDate: new FormControl(''),
-      eventTitle: new FormControl(''),
-      eventLocation: new FormControl('')
+      eventDate: new FormControl('', [Validators.required, this.validateDate]),
+      eventTitle: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+      eventLocation: new FormControl('',[Validators.required, Validators.maxLength(15)])
     })
   }
 
   ngOnInit(): void {
   }
 
+  validateDate(control: FormControl): ValidationErrors{
+
+    let message: string = '';
+    let date = new Date(control.value)
+
+    if(isNaN(date.valueOf())){
+      message = 'Некорректно введена дата'
+    }
+    if(date.valueOf() < Date.now()){
+      message = 'Введенная дата уже прошла'
+    }
+    if(message != ''){
+      return {
+        invalidDate:
+        message
+      }
+    }
+    return null
+  }
+
   createEvent(){
     const value = this.eventForm.value;
 
-    if(value.eventDate == '' || value.eventTitle == '' || value.eventLocation == ''){
-      alert('Пожалуйста, заполните форму')
-      return;
+    if(this.eventForm.invalid){
+      console.log(this.eventForm.get('eventDate').getError('invalidDate'))
+      return
     }
 
-    let date = new Date(value.eventDate);
-    if(isNaN(date.valueOf())){
-      alert('Пожалуйста, заполните дату корректно')
-      return;
-    }
-
-    const event = new DomenEvent(date, value.eventTitle, value.eventLocation);
+    const event = new DomenEvent(new Date(value.eventDate), value.eventTitle, value.eventLocation);
     this.create.emit(event);
+
+    this.eventForm.reset(
+      {
+        eventDate: '',
+        eventTitle: '',
+        eventLocation: ''
+      }
+    )
   }
 
 }
