@@ -8,11 +8,10 @@
   </select>
 </label>
 
-<!--<div [ngSwitch]="selectedPage">-->
-<!--  <app-my-photo *ngSwitchCase="fighterPageName"></app-my-photo>-->
-<!--  <app-calculator *ngSwitchCase="calculatorPageName"></app-calculator>-->
-<!--  <app-board *ngSwitchCase="fightBoardName"></app-board>-->
-<!--  <app-my-photo *ngSwitchDefault="fighterPageName"></app-my-photo>-->
-<!--</div>-->
-<app-board></app-board>
+<div [ngSwitch]="selectedPage">
+  <app-my-photo *ngSwitchCase="fighterPageName"></app-my-photo>
+  <app-calculator *ngSwitchCase="calculatorPageName"></app-calculator>
+  <app-board *ngSwitchCase="fightBoardName"></app-board>
+  <app-my-photo *ngSwitchDefault="fighterPageName"></app-my-photo>
+</div>
 

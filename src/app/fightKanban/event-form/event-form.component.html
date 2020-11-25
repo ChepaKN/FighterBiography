@@ -1,9 +1,17 @@
 <form (submit)="createEvent()" [formGroup]="eventForm">
   <input formControlName="eventDate" placeholder="YYYY.MM.DD" value=""><br>
-  <app-form-error [control]="eventForm.controls.eventDate"></app-form-error>
   <input formControlName="eventTitle" placeholder="Название турнира" value=""><br>
-  <app-form-error [control]="eventForm.controls.eventTitle"></app-form-error>
   <input formControlName="eventLocation" placeholder="Место проведения" value=""><br>
-  <app-form-error [control]="eventForm.controls.eventLocation"></app-form-error>
   <button type="submit">Добавить</button>
+  <br>
+  <hr>
+  <label>Дата:
+    <app-form-error [control]="eventForm.controls.eventDate"></app-form-error>
+  </label>
+  <label>Название:
+    <app-form-error [control]="eventForm.controls.eventTitle"></app-form-error>
+  </label>
+  <label>Место:
+    <app-form-error [control]="eventForm.controls.eventLocation"></app-form-error>
+  </label>
 </form>

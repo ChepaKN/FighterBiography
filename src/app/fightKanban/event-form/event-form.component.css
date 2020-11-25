@@ -1,0 +1,29 @@
+form{
+  color: burlywood;
+  border: 2px solid darkcyan;
+  width: max-content;
+}
+input {
+  border: 1px solid #2f9453;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #b0f39d;
+  height: auto;
+  width: auto;
+  color: #5d0d0d;
+  font-size: 18px;
+}
+button {
+  background-color: #4CAF50; /* Green */
+  border: 1px solid #2f9453;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+hr{
+  border: 1px solid darkcyan;
+}

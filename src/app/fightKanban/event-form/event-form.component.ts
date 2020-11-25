@@ -1,7 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {DomenEvent} from "../domenClasses/domen-event";
-import validate = WebAssembly.validate;
 
 @Component({
   selector: 'app-event-form',
