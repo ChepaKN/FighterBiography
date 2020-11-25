@@ -7,9 +7,12 @@
   Дата рождения: {{birthDate|date: 'dd.MM.yyyy'}}
 </p>
 <img src={{this.photoSrc}} alt={{this.name}}>
-<p>
+<p *ngIf="fightEventsList.length != 0; else elseBlock">
   Следующий бой состоится через {{timeBeforeFight}}
 </p>
+<ng-template #elseBlock>
+  <p style="color: cyan">Нет запланированных боев</p>
+</ng-template>
 <div>
   <label> Дата
     <input [(ngModel)]="this.fightDate" placeholder="YYYY.MM.DD" value="" >
