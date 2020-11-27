@@ -92,5 +92,6 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   clearEvents(): void{
     this.fightEventsList = [];
     localStorage.clear();
+    this.savedRecordsCounter = 0;
   }
 }
