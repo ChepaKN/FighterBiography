@@ -3,10 +3,10 @@ import {FightEvent} from './fight-event';
 
 @Component({
   selector: 'app-my-photo',
-  templateUrl: './my-photo.component.html',
-  styleUrls: ['./my-photo.component.css']
+  templateUrl: './fighter.component.html',
+  styleUrls: ['./fighter.component.css']
 })
-export class MyPhotoComponent implements OnInit, OnDestroy {
+export class FighterComponent implements OnInit, OnDestroy {
 
   name: string;
   nickname: string;
@@ -17,7 +17,6 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
   opponent = '';
   fightDate = '';
-  fightEvent: FightEvent;
   fightEventsList: FightEvent[] = [];
 
   savedRecordsCounter = 0;
@@ -37,7 +36,7 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
 
   nextFightCountdown = () => {
     if(this.fightEventsList.length){
-      this.timeBeforeFight = this.fightEventsList[0].fightDate.valueOf() - new Date().valueOf();
+      this.timeBeforeFight = this.fightEventsList[0].fightDate.valueOf() - Date.now();
     }else{
       this.timeBeforeFight = 0;
     }
@@ -48,7 +47,7 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
   }
 
   sortEventList(): void{
-    this.fightEventsList = this.fightEventsList.filter(value => value.fightDate.valueOf() > new Date().valueOf());
+    this.fightEventsList = this.fightEventsList.filter(value => value.fightDate.valueOf() > Date.now());
     this.fightEventsList.sort((a, b) => a.fightDate.valueOf() - b.fightDate.valueOf());
   }
 
@@ -69,29 +68,14 @@ export class MyPhotoComponent implements OnInit, OnDestroy {
     this.sortEventList();
   }
 
-  addFightEvent(): void{
-
-    if(this.fightDate == '' || this.opponent == '') {
-      alert('Заполните поля')
-      return;
-    }
-
-    let date = new Date(this.fightDate);
-    if(isNaN(date.valueOf()) || (date.valueOf() < new Date().valueOf())){
-      alert('Некорректно введена дата');
-      return;
-    }
-
-    this.fightEvent = new FightEvent(date, this.opponent);
-    this.fightEventsList.push(this.fightEvent);
-    this.fightDate = '';
-    this.opponent = '';
-    this.saveLocalStorage(this.fightEvent);
-  }
-
   clearEvents(): void{
     this.fightEventsList = [];
     localStorage.clear();
     this.savedRecordsCounter = 0;
+  }
+
+  pushNewFight($event: FightEvent) {
+    this.fightEventsList.push($event);
+    this.saveLocalStorage($event);
   }
 }

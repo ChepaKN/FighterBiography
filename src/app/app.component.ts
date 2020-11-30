@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'my-app';
   fighterPageName = 'fighter';
-  calculatorPageName = 'calculator';
   fightBoardName = 'fightBoard';
   selectedPage: string;
-  pages: string[] = [this.fighterPageName, this.calculatorPageName, this.fightBoardName];
+  pages: string[] = [this.fighterPageName, this.fightBoardName];
 }
+
+
