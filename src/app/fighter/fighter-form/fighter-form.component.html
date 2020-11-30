@@ -1,0 +1,11 @@
+<form (submit)="addFightEvent()" [formGroup]="fighterForm">
+  <label> Дата
+    <input formControlName="fightDate" placeholder="YYYY.MM.DD" value="" >
+    <app-form-error [control]="fighterForm.controls.fightDate"></app-form-error>
+  </label>
+  <label> Соперник
+    <input formControlName="opponent" placeholder="Имя" value="">
+    <app-form-error [control]="fighterForm.controls.opponent"></app-form-error>
+  </label>
+  <button type="submit">Добавить</button><br>
+</form>

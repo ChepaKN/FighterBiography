@@ -6,23 +6,15 @@
 <p>
   Дата рождения: {{birthDate|date: 'dd.MM.yyyy'}}
 </p>
-<img src={{this.photoSrc}} alt={{this.name}}>
+<img src={{photoSrc}} alt={{name}}>
 <p *ngIf="fightEventsList.length != 0; else elseBlock">
   Следующий бой состоится через {{timeBeforeFight}}
 </p>
 <ng-template #elseBlock>
   <p style="color: cyan">Нет запланированных боев</p>
 </ng-template>
-<div>
-  <label> Дата
-    <input [(ngModel)]="this.fightDate" placeholder="YYYY.MM.DD" value="" >
-  </label>
-  <label> Соперник
-    <input [(ngModel)]="this.opponent"  placeholder="Имя" value="">
-  </label>
-  <button (click)="addFightEvent()">Сохранить</button>
-</div>
 
+<app-fighter-form (addFight)="pushNewFight($event)"></app-fighter-form>
 <p>Предстоящие бои:</p>
 
 <div *ngFor="let record of this.fightEventsList">
