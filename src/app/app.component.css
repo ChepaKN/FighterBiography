@@ -4,12 +4,15 @@ p {
   text-align: center;
   border-bottom: 3px solid;
 }
+p:hover {
+  color: #8aae94;
+  border-bottom: .07em solid;
+  text-decoration: none;
+}
+
 app-my-photo{
   color: #afeaea;
   font-size: 18px;
-}
-div{
-  /*background-color: #5b835b;*/
 }
 
 

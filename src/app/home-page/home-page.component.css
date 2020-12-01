@@ -1,0 +1,39 @@
+a:link {
+  color: #5c6a83;
+  border-bottom: 1px dashed;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 10px;
+  letter-spacing: 1px;
+  margin: 0 20px;
+  font-size: 20px;
+  font-family: 'Fredoka One', cursive;
+  transition: .3s ease-in-out;
+}
+
+p{
+  font-size: 26px;
+  font-family: 'Fredoka One', cursive;
+  transition: .3s ease-in-out;
+  color: #79a9c1;
+}
+
+a:visited {
+  color: #2c8dbe;
+}
+
+a:hover {
+  color: #62ae42;
+  border-bottom: .07em solid;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #497DDD;
+  border-bottom: 1px dashed;
+}
+
+

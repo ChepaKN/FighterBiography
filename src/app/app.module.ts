@@ -11,6 +11,25 @@ import { EventFormComponent } from './fightKanban/event-form/event-form.componen
 import { FormErrorComponent } from './form-error/form-error.component';
 import { FighterFormComponent } from './fighter/fighter-form/fighter-form.component';
 import { AutocompleteComponent } from './fighter/autocomplete/autocomplete.component';
+import {RouterModule, Routes} from "@angular/router";
+import { HomePageComponent } from './home-page/home-page.component';
+
+const routes: Routes =   [
+  {
+    path: '',
+    component: HomePageComponent,
+    pathMatch: 'full'
+  },
+  {
+  path: 'fighter',
+  component: FighterComponent,
+  pathMatch: 'full'
+  },
+  {
+    path: 'board',
+    component: BoardComponent,
+    pathMatch: 'full'
+  }]
 
 @NgModule({
   declarations: [
@@ -23,11 +42,13 @@ import { AutocompleteComponent } from './fighter/autocomplete/autocomplete.compo
     FormErrorComponent,
     FighterFormComponent,
     AutocompleteComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
