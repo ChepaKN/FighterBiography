@@ -10,6 +10,7 @@ import { EventComponent } from './fightKanban/event/event.component';
 import { EventFormComponent } from './fightKanban/event-form/event-form.component';
 import { FormErrorComponent } from './form-error/form-error.component';
 import { FighterFormComponent } from './fighter/fighter-form/fighter-form.component';
+import { AutocompleteComponent } from './fighter/autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FighterFormComponent } from './fighter/fighter-form/fighter-form.compon
     EventFormComponent,
     FormErrorComponent,
     FighterFormComponent,
+    AutocompleteComponent,
   ],
   imports: [
     BrowserModule,
