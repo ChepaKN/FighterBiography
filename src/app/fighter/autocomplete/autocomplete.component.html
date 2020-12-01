@@ -1,5 +1,11 @@
-<input #input>
+<label>Поиск:
+  <input #input>
+</label>
+<div *ngFor="let result of results">{{result.fightDate|date: 'dd.MM.yyyy'}} Соперник: {{result.opponentName}}</div>
 <hr>
-<div *ngFor="let result of results">{{result}}</div>
-<hr>
-<div *ngFor="let request of requests">{{request}}</div>
+<div *ngIf="requests.length > 0">
+  История поиска:
+  <button (click)="clearRequests()">Очистить</button>
+  <div *ngFor="let request of requests">{{request}}</div>
+  <hr>
+</div>

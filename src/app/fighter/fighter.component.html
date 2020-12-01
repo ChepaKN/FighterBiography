@@ -24,4 +24,9 @@
   <button *ngIf="fightEventsList.length != 0" (click)="clearEvents()">Очистить</button>
 </div>
 
+<br>
+<br>
+<hr>
+<app-autocomplete [fightEventsList]="fightEventsList"></app-autocomplete>
+
 

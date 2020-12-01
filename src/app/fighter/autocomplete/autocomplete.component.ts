@@ -1,31 +1,30 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {fromEvent, Subscription} from "rxjs";
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
-import {SearchFightService} from "../service/search-fight.service";
+import {SearchFightService} from "./search-fight.service";
 import {FightEvent} from "../fight-event";
-import {FighterComponent} from "../fighter.component";
 
 @Component({
   selector: 'app-autocomplete',
   templateUrl: './autocomplete.component.html',
-  styleUrls: ['./autocomplete.component.css']
+  styleUrls: ['./autocomplete.component.css'],
+  providers: [SearchFightService]
 })
-export class AutocompleteComponent implements OnInit, OnDestroy {
+export class AutocompleteComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('input')
   input: ElementRef;
+
   results: FightEvent[] = [];
-  requests: FightEvent[] = [];
+  requests: string[] = [];
   subscription: Subscription;
 
   @Input()
   fightEventsList: FightEvent[] = [];
-  // @ViewChild(FighterComponent)
-  // fightEventsList:
 
   constructor(private searchFightService: SearchFightService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const input: HTMLInputElement = this.input.nativeElement as HTMLInputElement;
 
     this.subscription = fromEvent(input, 'input')
@@ -34,15 +33,19 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
         debounceTime(400),
         distinctUntilChanged()
       ).subscribe(value => {
-        this.searchFightService.getResultsByName(value, this.fightEventsList);
-        // this.requests.push(fight);
+        this.results = this.searchFightService.getResultsByName(value, this.fightEventsList);
+        this.requests.push(value);
       });
+  }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-
-
+  clearRequests() {
+    this.requests = [];
+  }
 }
